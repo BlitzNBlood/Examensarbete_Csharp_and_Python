@@ -1,0 +1,8 @@
+[project]
+name = "frontend"
+version = "0.1.0"
+description = "frontend(py)"
+
+requires-python = ">=3.11"
+
+dependencies = ["pandas", "urllib", "streamlit", "requests", "pathlib"]

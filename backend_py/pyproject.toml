@@ -1,0 +1,16 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "backend(py)"
+
+requires-python = ">=3.11"
+
+dependencies = [
+    "pathlib",
+    "pprint",
+    "pydantic",
+    "pandas",
+    "joblib",
+    "fastapi",
+    "uvicorn",
+]
