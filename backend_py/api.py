@@ -1,14 +1,9 @@
 from fastapi import FastAPI
-from data_processing import CostData, UserInput, PredictionOutput
+from data_processing import UserInput, PredictionOutput
 import joblib
 import pandas as pd 
 
 app = FastAPI()
-input = CostData()
-
-@app.get("/api")
-def read_data():
-    return input.to_json()
 
 @app.post("/api/predict", response_model=PredictionOutput)
 def predict_cost(payload: UserInput):

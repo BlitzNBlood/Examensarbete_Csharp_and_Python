@@ -5,4 +5,4 @@ description = "frontend(py)"
 
 requires-python = ">=3.11"
 
-dependencies = ["pandas", "urllib", "streamlit", "requests", "pathlib"]
+dependencies = ["urllib", "streamlit", "requests"]

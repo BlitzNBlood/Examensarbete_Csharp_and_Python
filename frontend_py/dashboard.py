@@ -1,12 +1,5 @@
 import streamlit as st
-import sys
-from pathlib import Path
-sys.path.append(str(Path(__file__).parent.parent.resolve()))
-from helpers import read_api_endpoint, post_api_endpoint
-import pandas as pd
-
-data = read_api_endpoint("/api")
-df = pd.DataFrame(data.json())
+from helpers import post_api_endpoint
 
 def layout():
     st.markdown("# Give taxi trip information")
@@ -61,9 +54,6 @@ def layout():
         response = post_api_endpoint(payload, endpoint="/api/predict")
         predicted_cost = response.json().get("predicted_cost")
         st.markdown(f"Predicted cost: {predicted_cost}")
-    
-    st.markdown("## Raw data")
-    st.dataframe(df)
 
 if __name__ == "__main__":
     layout()

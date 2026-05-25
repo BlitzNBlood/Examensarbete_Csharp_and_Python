@@ -1,6 +1,6 @@
 using System.Net.Http;
 using System.Net.Http.Json;
-var payload = new
+var payload = new Payload;
 public class TaxiValues
 {
     public double Trip_Distance_km { get; set; } = 6.0;

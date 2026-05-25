@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\backend(cs)\\MyApi\\MyApi.csproj": {}
+    "c:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\backend_cs\\MyApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\backend(cs)\\MyApi\\MyApi.csproj": {
+    "c:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\backend_cs\\MyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\backend(cs)\\MyApi\\MyApi.csproj",
+        "projectUniqueName": "c:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\backend_cs\\MyApi.csproj",
         "projectName": "MyApi",
-        "projectPath": "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\backend(cs)\\MyApi\\MyApi.csproj",
+        "projectPath": "c:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\backend_cs\\MyApi.csproj",
         "packagesPath": "C:\\Users\\Marku\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\backend(cs)\\MyApi\\obj\\",
+        "outputPath": "c:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\backend_cs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Marku\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,6 +44,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Data.Analysis": {
+              "target": "Package",
+              "version": "[0.23.0, )"
+            },
+            "Microsoft.ML": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

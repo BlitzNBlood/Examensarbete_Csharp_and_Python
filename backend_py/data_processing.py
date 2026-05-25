@@ -1,5 +1,4 @@
 import pandas as pd
-from pprint import pprint
 from pydantic import BaseModel, Field
 
 df = pd.read_csv("taxi_trip_pricing.csv")
@@ -13,13 +12,6 @@ for columns in df:
     else:
         df = df[df[columns].isnull() == False]
         df = df.reset_index(drop=True)
-
-class CostData:
-    def __init__(self):
-        self.df = df
-
-    def to_json(self):
-        return self.df.to_dict(orient="records")
 
 class UserInput(BaseModel):
     Trip_Distance_km: float = Field(6)
@@ -35,7 +27,3 @@ class UserInput(BaseModel):
 
 class PredictionOutput(BaseModel):
     predicted_cost: float
-
-if __name__ == "__main__":
-    data_explorer = CostData()
-    pprint(data_explorer.json_response())
