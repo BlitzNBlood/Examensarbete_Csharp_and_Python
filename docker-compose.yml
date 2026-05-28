@@ -2,26 +2,30 @@ services:
   backend_py:
     build:
         context: ./backend_py
-        dockerfile: backend_py/Dockerfile
+        dockerfile: Dockerfile
     ports:
       - "8000:8000"
 
   frontend_py:
       build:
           context: ./frontend_py
-          dockerfile: frontend_py/Dockerfile
+          dockerfile: Dockerfile
       ports:
           - "8501:8501"
   backend_cs:
     build:
         context: ./backend_cs
-        dockerfile: backend_cs/Dockerfile
+        dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - "8001:8000"
 
   frontend_cs:
       build:
           context: ./frontend_cs
-          dockerfile: frontend_cs/Dockerfile
+          dockerfile: Dockerfile
+      volumes:
+          - keys:/app/keys
       ports:
-          - "8501:8501"
+          - "8502:8501"
+volumes:
+  keys: {}

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\frontend_cs\\frontend_cs\\frontend_cs.csproj": {}
+    "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\frontend_cs\\frontend_cs.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\frontend_cs\\frontend_cs\\frontend_cs.csproj": {
+    "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\frontend_cs\\frontend_cs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\frontend_cs\\frontend_cs\\frontend_cs.csproj",
+        "projectUniqueName": "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\frontend_cs\\frontend_cs.csproj",
         "projectName": "frontend_cs",
-        "projectPath": "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\frontend_cs\\frontend_cs\\frontend_cs.csproj",
+        "projectPath": "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\frontend_cs\\frontend_cs.csproj",
         "packagesPath": "C:\\Users\\Marku\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\frontend_cs\\frontend_cs\\obj\\",
+        "outputPath": "C:\\Users\\Marku\\Documents\\Projects\\Examensarbete_Csharp_and_Python\\frontend_cs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Marku\\AppData\\Roaming\\NuGet\\NuGet.Config",

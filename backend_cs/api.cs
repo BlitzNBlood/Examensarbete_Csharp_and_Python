@@ -1,16 +1,27 @@
 using Microsoft.ML;
+using System.Diagnostics;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
-app.Urls.Add("http://127.0.0.1:8000");
 var mlContext = new MLContext();
 
-app.MapGet("/api/predict", (TaxiInput input) =>
+ITransformer model = mlContext.Model.Load(Path.Combine(AppContext.BaseDirectory, "taxi_price_guesser_cs.zip"), out var schema);
+var predictionEngine = mlContext.Model.CreatePredictionEngine<TaxiInput, TaxiOutput>(model);
+
+app.MapPost("/api/predict", (TaxiInput Input) =>
 {
-    ITransformer model = mlContext.Model.Load("taxi_price_guesser_cs.zip", out var schema);
-    var predictionEngine = mlContext.Model.CreatePredictionEngine<TaxiInput, TaxiOutput>(model);
-    var prediction = predictionEngine.Predict(input);
+    var timefullbackend_cs = Stopwatch.StartNew();
+    var prediction = predictionEngine.Predict(Input);
+    
+    timefullbackend_cs.Stop();
+    Console.WriteLine($"Backend_cs: full backend operation time: {timefullbackend_cs.ElapsedMilliseconds} ms");
     return Results.Ok(new
     {
-        price = prediction.Trip_Price
+        predicted_cost = prediction.Score
     });
 });
+app.MapGet("/health", () => Results.Ok(new
+{
+    status = "ok"
+}));
+
+app.Run();

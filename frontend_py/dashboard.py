@@ -1,5 +1,6 @@
 import streamlit as st
 from helpers import post_api_endpoint
+import time
 
 def layout():
     st.markdown("# Give taxi trip information")
@@ -39,6 +40,7 @@ def layout():
         submitted = st.form_submit_button("PREDICT COST")
 
     if submitted:
+        start_full = time.perf_counter()
         payload = {
             "Trip_Distance_km": tripdistancekm,
             "Time_of_Day": timeofday,
@@ -53,6 +55,8 @@ def layout():
         }
         response = post_api_endpoint(payload, endpoint="/api/predict")
         predicted_cost = response.json().get("predicted_cost")
+        stop_full = time.perf_counter()
+        print(f"frontend_py: full operation took: {(stop_full - start_full) * 1000:.2f} ms", flush=True)
         st.markdown(f"Predicted cost: {predicted_cost}")
 
 if __name__ == "__main__":

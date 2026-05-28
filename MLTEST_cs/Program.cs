@@ -1,5 +1,7 @@
 using Microsoft.ML;
 using Microsoft.Data.Analysis;
+using System.Globalization;
+using System.Text.Json;
 
 class MLTEST
 {
@@ -49,13 +51,18 @@ class MLTEST
         var dataList = new List<DataShape>();
         for (long i = 0; i < df.Rows.Count; i++)
         {
-            float.TryParse(df["Trip_Distance_km"][i]?.ToString(), out var a);
-            float.TryParse(df["Passenger_Count"][i]?.ToString(), out var b);
-            float.TryParse(df["Base_Fare"][i]?.ToString(), out var c);
-            float.TryParse(df["Per_Km_Rate"][i]?.ToString(), out var d);
-            float.TryParse(df["Per_Minute_Rate"][i]?.ToString(), out var e);
-            float.TryParse(df["Trip_Duration_Minutes"][i]?.ToString(), out var f);
-            float.TryParse(df["Trip_Price"][i]?.ToString(), out var g);
+            float.TryParse(df["Trip_Distance_km"][i]?.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var a);
+            float.TryParse(df["Passenger_Count"][i]?.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var b);
+            float.TryParse(df["Base_Fare"][i]?.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var c);
+            float.TryParse(df["Per_Km_Rate"][i]?.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var d);
+            float.TryParse(df["Per_Minute_Rate"][i]?.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var e);
+            float.TryParse(df["Trip_Duration_Minutes"][i]?.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var f);
+            float.TryParse(df["Trip_Price"][i]?.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var g);
+            
+            if (a == 0 || b == 0 || g == 0)
+            {
+                Console.WriteLine("Possible parsing failure row");
+            };
             dataList.Add(new DataShape
             {
                 Trip_Distance_km = a,
@@ -108,9 +115,18 @@ class MLTEST
                 nameof(DataShape.Per_Minute_Rate),
                 nameof(DataShape.Trip_Duration_Minutes)
             ))
-            .Append(ml.Transforms.CopyColumns("Label", nameof(DataShape.Trip_Price)))
-            .Append(ml.Regression.Trainers.FastTree());
+            .Append(ml.Regression.Trainers.FastTree(
+            labelColumnName: nameof(DataShape.Trip_Price),
+            featureColumnName: "Features"));
         var model = pipeline.Fit(data);
+        var predictions = model.Transform(data);
+
+        var metrics = ml.Regression.Evaluate(
+            predictions,
+            labelColumnName: nameof(DataShape.Trip_Price),
+            scoreColumnName: "Score"
+        );
+        Console.WriteLine(metrics.RSquared);
         ml.Model.Save(model, data.Schema, "taxi_price_guesser_cs.zip");
     }
 }

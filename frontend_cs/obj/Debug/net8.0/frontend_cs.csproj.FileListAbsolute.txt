@@ -1,0 +1,6 @@
+C:\Users\Marku\Documents\Projects\Examensarbete_Csharp_and_Python\frontend_cs\obj\Debug\net8.0\frontend_cs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marku\Documents\Projects\Examensarbete_Csharp_and_Python\frontend_cs\obj\Debug\net8.0\frontend_cs.AssemblyInfoInputs.cache
+C:\Users\Marku\Documents\Projects\Examensarbete_Csharp_and_Python\frontend_cs\obj\Debug\net8.0\frontend_cs.AssemblyInfo.cs
+C:\Users\Marku\Documents\Projects\Examensarbete_Csharp_and_Python\frontend_cs\obj\Debug\net8.0\frontend_cs.csproj.CoreCompileInputs.cache
+C:\Users\Marku\Documents\Projects\Examensarbete_Csharp_and_Python\frontend_cs\obj\Debug\net8.0\frontend_cs.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Marku\Documents\Projects\Examensarbete_Csharp_and_Python\frontend_cs\obj\Debug\net8.0\frontend_cs.sourcelink.json

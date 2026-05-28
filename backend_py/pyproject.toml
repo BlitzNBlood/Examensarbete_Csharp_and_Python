@@ -1,11 +1,12 @@
 [project]
-name = "backend"
+name = "backend_py"
 version = "0.1.0"
-description = "backend(py)"
+description = "backend_py"
 
 requires-python = ">=3.11"
 
 dependencies = [
+    "scikit-learn",
     "pydantic",
     "pandas",
     "joblib",

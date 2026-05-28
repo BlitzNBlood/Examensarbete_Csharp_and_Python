@@ -13,5 +13,5 @@ public class TaxiInput
 }
 class TaxiOutput
 {
-    public float Trip_Price {get; set;}
+    public float Score {get; set;}
 }

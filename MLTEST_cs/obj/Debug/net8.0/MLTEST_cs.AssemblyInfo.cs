@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MLTEST_cs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ccaa3d68656d978c5a56fbde35e2eb01957dba8c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf883fa762bc6f19374f7a6f5dd143e8dc07b1d2")]
 [assembly: System.Reflection.AssemblyProductAttribute("MLTEST_cs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MLTEST_cs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Components.Forms
+@using System.Diagnostics;
 @page "/taxi"
 @inject ApiService Api
 
@@ -5,16 +7,16 @@
 
 <EditForm Model="@model" OnValidSubmit="Submit">
 
-    <InputNumber @bind-Value="model.Trip_Distance_km" />
+    <InputNumber TValue="float?" @bind-Value="model.Trip_Distance_km" />
     <InputText @bind-Value="model.Time_of_Day" />
     <InputText @bind-Value="model.Day_of_Week" />
-    <InputNumber @bind-Value="model.Passenger_Count" />
+    <InputNumber TValue="float?" @bind-Value="model.Passenger_Count" />
     <InputText @bind-Value="model.Traffic_Conditions" />
     <InputText @bind-Value="model.Weather" />
-    <InputNumber @bind-Value="model.Base_Fare" />
-    <InputNumber @bind-Value="model.Per_Km_Rate" />
-    <InputNumber @bind-Value="model.Per_Minute_Rate" />
-    <InputNumber @bind-Value="model.Trip_Duration_Minutes" />
+    <InputNumber TValue="float?" @bind-Value="model.Base_Fare" />
+    <InputNumber TValue="float?" @bind-Value="model.Per_Km_Rate" />
+    <InputNumber TValue="float?" @bind-Value="model.Per_Minute_Rate" />
+    <InputNumber TValue="float?" @bind-Value="model.Trip_Duration_Minutes" />
 
     <br />
     <button type="submit">PREDICT COST</button>
@@ -26,51 +28,22 @@
     <h3>Predicted cost: @predictedCost</h3>
 }
 
-<hr />
-
-<h3>Raw data</h3>
-
-@if (rawData == null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <table>
-        <thead>
-            <tr>
-                @foreach (var key in rawData.First().Keys)
-                {
-                    <th>@key</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var row in rawData)
-            {
-                <tr>
-                    @foreach (var val in row.Values)
-                    {
-                        <td>@val</td>
-                    }
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-
 @code {
     private TaxiValues model = new();
     private double? predictedCost;
-    private List<Dictionary<string, object>>? rawData;
 
-    protected override async Task OnInitializedAsync()
+    private async Task Submit(EditContext context)
     {
-        rawData = await Api.GetRawData();
-    }
-
-    private async Task Submit()
-    {
-        predictedCost = await Api.Predict(model);
+        try
+        {
+            var timeFull = Stopwatch.StartNew();
+            predictedCost = await Api.Predict(model);
+            timeFull.Stop();
+            Console.WriteLine($"Full operation time: {timeFull.ElapsedMilliseconds} ms");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
     }
 }

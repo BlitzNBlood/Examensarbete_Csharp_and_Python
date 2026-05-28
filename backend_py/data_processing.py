@@ -1,17 +1,4 @@
-import pandas as pd
 from pydantic import BaseModel, Field
-
-df = pd.read_csv("taxi_trip_pricing.csv")
-for columns in df:
-    if (columns == 'Base_Fare' or columns == 'Per_Km_Rate' or columns == 'Per_Minute_Rate'):
-        loop_count = 0
-        for rows in df[columns]:
-            if (pd.isnull(df[columns].iloc[loop_count]) == True):
-                df.loc[loop_count, columns] = 0.0
-            loop_count = loop_count + 1
-    else:
-        df = df[df[columns].isnull() == False]
-        df = df.reset_index(drop=True)
 
 class UserInput(BaseModel):
     Trip_Distance_km: float = Field(6)

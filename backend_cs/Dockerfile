@@ -1,15 +1,22 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
-RUN dotnet restore
+WORKDIR /src
 
-WORKDIR /app
+COPY backend_cs.csproj ./
+RUN dotnet restore
 
 COPY . .
 
-RUN dotnet publish MyApi.csproj -c Release -o /app/publish
+RUN dotnet publish backend_cs.csproj -c Release -o /app/publish
 
-COPY --from=build /app/publish .
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+
+WORKDIR /app
+
+COPY --from=build /app/publish /app
+
+ENV ASPNETCORE_URLS=http://+:8000
 
 EXPOSE 8000
 
-CMD ["dotnet", "MyApi.dll"]
+CMD ["dotnet", "backend_cs.dll"]
