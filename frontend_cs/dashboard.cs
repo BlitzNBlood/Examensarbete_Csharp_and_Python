@@ -23,7 +23,7 @@ public class ApiService
     {
         _http = http;
     }
-    private async Task InitializeBackend()
+    /*private async Task InitializeBackend() // detta användes för problemlösning medans projektet kodades.
     {
         
         await _lock.WaitAsync();
@@ -59,15 +59,17 @@ public class ApiService
         {
             _lock.Release();
         }
-    }
+    }*/
     public async Task<double?> Predict(TaxiValues input)
     {
         
         Console.WriteLine("dahsboard.cs: initializing adress");
-        var timeGetWorkingAdress_cs = Stopwatch.StartNew();
-        await InitializeBackend();
-        timeGetWorkingAdress_cs.Stop();
-        Console.WriteLine($"dashboard.cs: got working adress in: {timeGetWorkingAdress_cs.ElapsedMilliseconds} ms");
+        //var timeGetWorkingAdress_cs = Stopwatch.StartNew();
+        //await InitializeBackend();
+        //byt ut "http://backend_cs:8000" med "http://backend_py:8000" eller tvärt om beroende på vilken backend du vill använda.
+        _activeBackend = "http://backend_cs:8000";
+        //timeGetWorkingAdress_cs.Stop();
+        //Console.WriteLine($"dashboard.cs: got working adress in: {timeGetWorkingAdress_cs.ElapsedMilliseconds} ms");
         var timeApi_cs = Stopwatch.StartNew();
         var response = await _http.PostAsJsonAsync($"{_activeBackend}/api/predict", input);
         timeApi_cs.Stop();
